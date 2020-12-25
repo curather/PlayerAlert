@@ -9,8 +9,6 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.Minecraft;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 @Mod(modid = playeralert.MODID, version = playeralert.VERSION)
@@ -38,11 +36,14 @@ public class playeralert
         String TPlayer = unformattedText.replace("[SkyBlock] ", "").replace(" is visiting Your Island!", "");
         if (unformattedText.contains("visiting Your Island")) {
             //msg(TPlayer + " is visiting your island.");
+            Minecraft.getMinecraft().thePlayer.playSound("mob.enderdragon.growl", 0.5f, 100);
+            Minecraft.getMinecraft().thePlayer.playSound("mob.enderdragon.growl", 0.5f, -10);
             for (int i = 0; i < 3; i++) {
                 ShowTitle(TPlayer, "is visiting your island.", 0, 200, 40);
             }
         }
     }
+
     public static void msg(String key) {
         Minecraft.getMinecraft().thePlayer.addChatMessage((new ChatComponentText(key)));
     }
